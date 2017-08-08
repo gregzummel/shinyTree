@@ -13,7 +13,7 @@ var shinyTree = function(){
       
       $elem.html(data);
       var plugins = [];
-      if ($elem.data('st-checkbox') === 'TRUE'){
+      if ('TRUE' === 'TRUE'){
         plugins.push('checkbox');
       }
       if ($elem.data('st-search') === 'TRUE'){
@@ -26,7 +26,12 @@ var shinyTree = function(){
       var tree = $(el).jstree({'core' : {
         "check_callback" : ($elem.data('st-dnd') === 'TRUE'),
         'themes': {'name': $elem.data('st-theme'), 'responsive': true }
-      },plugins: plugins});
+      },
+        plugins: plugins,
+        'checkbox': {
+    	     'three_state' : false
+        }
+      });
     }
   });
   Shiny.outputBindings.register(treeOutput, 'shinyTree.treeOutput');
